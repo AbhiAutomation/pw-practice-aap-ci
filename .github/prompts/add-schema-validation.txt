@@ -1,0 +1,47 @@
+Title: Add Schema Validation
+
+Instruction: Use `.github/instructions/schema-validation.md`
+
+Description:
+Add `shouldMatchSchema` assertions to API requests in the specified spec file(s) according to the linked instruction.
+
+Parameters (provide values when calling):
+- targetFiles: glob or single path (e.g. `tests/api-tests/*.spec.ts` or `tests/api-tests/smokeTest.spec.ts`)
+- generateIfMissing: `true|false` — if `true`, create starter schema files when missing (requires a schema generator or follow-up manual review). Default: `false`.
+- dryRun: `true|false` — if `true`, only show patches to apply and do not modify files. Default: `true`.
+
+Behavior:
+- For each target file, scan for API request calls that return parsed responses (e.g., `getRequest`, `postRequest`, `putRequest`).
+- Skip `deleteRequest` calls.
+- Skip any response that already has an `await expect(...).shouldMatchSchema(...)` assertion.
+- Insert `await expect(response).shouldMatchSchema('<dir>', '<SCHEMA_NAME>');` immediately after the request call.
+- Choose `<dir>` and `<SCHEMA_NAME>` based on the request path and HTTP method. Example: POST to `/booking` -> `booking`, `POST_booking`.
+- If `generateIfMissing=true`, also create a starter schema file at `response-schemas/<dir>/<SCHEMA_NAME>.json` with a basic object schema extracted from the response (only if a generator is available). If not available, flag the file for manual schema creation.
+
+Example prompt usage (concise):
+
+Add schema validation to a single file (dry run):
+```
+Add Schema Validation
+targetFiles: tests/api-tests/smokeTest.spec.ts
+generateIfMissing: false
+dryRun: true
+```
+
+Add schema validation to all API tests in a folder and generate starter schemas:
+```
+Add Schema Validation
+targetFiles: tests/api-tests/*.spec.ts
+generateIfMissing: true
+dryRun: false
+```
+
+Output:
+- When `dryRun=true`: Show a unified diff (patch) for each file with proposed insertions.
+- When `dryRun=false`: Apply the patch to the file(s) and list created schema files (if generation enabled). Always show a summary and require manual review of generated schemas.
+
+Notes:
+- This prompt assumes the project has `utils/custom-expect.ts` with `shouldMatchSchema` available and `utils/schema-validator.ts` to validate schemas.
+- The instruction `.github/instructions/schema-validation.md` is the authoritative guidance for how assertions should be inserted and formatted.
+
+If you want me to run this prompt now, provide the `targetFiles`, `generateIfMissing` (optional), and `dryRun` flag.

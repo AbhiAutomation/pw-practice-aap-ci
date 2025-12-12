@@ -1,0 +1,67 @@
+Title: Update Schemas Workflow
+
+Instruction: Use `.github/instructions/schema-validation.md`
+
+Description:
+Automate the workflow to update JSON Schemas when schema validations fail across tests. This prompt will run the test suite (or a subset), parse failures that indicate schema mismatches, toggle the `shouldMatchSchema` call(s) to enable schema regeneration, re-run tests to generate/update schemas, then revert the temporary toggle and verify all tests pass. It is safe by default (dry run) and always shows the patch before applying changes.
+
+Parameters (provide values when calling):
+- targetFiles: glob or single path (e.g. `tests/api-tests/*.spec.ts` or `tests/api-tests/smokeTest.spec.ts`). Default: `tests/**/*.spec.ts`.
+- runCommand: command to run tests (string). Default: `npx playwright test --project api-testing`.
+- generateModeFlag: the value to set as the third argument in `shouldMatchSchema`. Use `true` to enable automatic generation. Default: `true`.
+- dryRun: `true|false` — if `true`, only show the unified diffs and do not modify files. Default: `true`.
+- applyAutomatically: `true|false` — if `false` (default), user must approve patches before they are written to disk.
+- restoreAfter: `true|false` — if `true` (default), revert the added generation flag after schema generation and verification.
+- maxFailures: integer — stop after this many schema failure updates in one run. Default: `50`.
+
+Behavior (high level):
+1. Run tests using `runCommand` and capture stdout/stderr. Prefer a compact reporter to simplify parsing (e.g., Playwright's default or `--reporter=list`).
+2. Parse test output for schema validation failures. Specifically, look for error lines that include patterns such as `Schema Validation Failed`, `shouldMatchSchema`, or the custom matcher stack trace showing the test file path and line number.
+3. For each unique failed `shouldMatchSchema` occurrence (grouped by file and the local code occurrence):
+   - Locate the test file and the exact `await expect(...).shouldMatchSchema(dir, file)` call.
+   - Modify that call to add the generation flag as the third argument: `await expect(response).shouldMatchSchema('booking', 'POST_booking', true);` (value from `generateModeFlag`).
+   - Only modify calls that do NOT already have the third argument set to the requested value.
+   - Track files and changed lines for later revert.
+4. Re-run tests (using `runCommand`) to allow the test run to trigger schema generation and update schema files. Capture output and report results.
+5. If `restoreAfter=true`, revert the changed `shouldMatchSchema` calls back to their original two-argument form. (If `applyAutomatically=false`, present both the generate patch and the revert patch for approval.)
+6. Run tests a final time to verify all tests pass (or report remaining schema failures).
+
+Safety & heuristics:
+- Default `dryRun=true` to avoid accidental edits. Always show unified diffs for review when `applyAutomatically=false`.
+- Only modify `await expect(...).shouldMatchSchema(...)` calls. Do not change other code.
+- When parsing failures, prefer stack-trace lines that include file paths. If lines are ambiguous, list candidates and require user confirmation before editing.
+- Respect `maxFailures` to avoid large unintended changes.
+
+Output:
+- When `dryRun=true`: For each file, show a unified diff containing proposed edits (add third arg). Also show the list of detected failures and their matched locations.
+- When `dryRun=false` and `applyAutomatically=true`: write changes to files, run tests as specified, revert edits if `restoreAfter=true`, and produce a summary (files modified, schemas generated, tests passing/remaining failures).
+
+Example usage (dry run):
+```
+Update Schemas Workflow
+targetFiles: tests/api-tests/smokeTest.spec.ts
+runCommand: npx playwright test --project api-testing
+generateModeFlag: true
+dryRun: true
+applyAutomatically: false
+```
+
+Example usage (apply changes):
+```
+Update Schemas Workflow
+targetFiles: tests/api-tests/*.spec.ts
+runCommand: npx playwright test --project api-testing
+generateModeFlag: true
+dryRun: false
+applyAutomatically: false
+restoreAfter: true
+maxFailures: 20
+```
+
+Notes:
+- This prompt relies on your schema-validation instruction for placement, naming, and formatting rules.
+- If schema generation requires additional code (a generator utility), the prompt will try to detect generated schema files in `response-schemas/` and list them. If none are created, it will stop and report that manual intervention is required.
+- This prompt is designed to help with maintenance but still requires human review for correctness — especially for generated schema files.
+
+Next step offer:
+I can run this prompt in `dryRun` mode for a specific file you name (for example `tests/api-tests/smokeTest.spec.ts`) and present the proposed patch(es). Reply with the `targetFiles` you want to scan and confirm `dryRun:true` or `false`.
