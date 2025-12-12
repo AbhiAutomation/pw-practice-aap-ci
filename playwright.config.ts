@@ -1,4 +1,5 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
+import { argosScreenshot } from "@argos-ci/playwright";
 
 /**
  * Read environment variables from file.
@@ -12,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -28,44 +29,61 @@ export default defineConfig({
      */
     timeout: 4000,
     toMatchSnapshot: {
-    maxDiffPixelRatio: 50,
-    }
-
-  },  
+      maxDiffPixelRatio: 50,
+    },
+  },
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
- /**
+  /**
   *            ['html'],
   *             ['list']
   *            ['json',{outputFile: 'test-results/jsonReport.json'}],
                ['junit',{outputFile:'test-results/junitReport.xml'}],
                ['allure-playwright'] 
   */
-    reporter: 'html' ,
+  reporter: [
+    process.env.CI ? ["dot"] : ["list"],
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,
+        // Set your Argos token (required if not using GitHub Actions).
+      //  token: "<YOUR-ARGOS-TOKEN>",// no need to provide token not needed 
+      },
+    ],
+    ["html"],
+    ["json", { outputFile: "test-results/jsonReport.json" }],
+    ["junit", { outputFile: "test-results/junitReport.xml" }],
+  ],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-     baseURL: 'http://localhost:4200',
+    baseURL: "http://localhost:4200",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
+    screenshot: "only-on-failure",
+    actionTimeout:20000,
+    navigationTimeout:25000,
+    video:{
+      mode: 'off',
+      size:{width:1920,height:1080}
+    }
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
     },
-
-
   ],
 
   /* Run your local dev server before starting the tests */
-   webServer: {
-     command: 'npm run start',
-     url: 'http://localhost:4200/',
-  
- },
+  webServer: {
+    command: "npm run start",
+    url: "http://localhost:4200/",
+  },
 });
