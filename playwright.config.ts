@@ -48,8 +48,7 @@ export default defineConfig({
       {
         // Upload to Argos on CI only.
         uploadToArgos: !!process.env.CI,
-        // Set your Argos token (required if not using GitHub Actions).
-      //  token: "<YOUR-ARGOS-TOKEN>",// no need to provide token not needed 
+     
       },
     ],
     ["html"],
@@ -82,8 +81,8 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: "npm run start",
-    url: "http://localhost:4200/",
-  },
+ // webServer: {
+   // command: "npm run start",
+    //url: "http://localhost:4200/",
+  //},
 });

@@ -18,9 +18,8 @@ test.describe("test suite 1", () => {
     await expect(usingtheGridForm).toHaveScreenshot({maxDiffPixels:50});
   });
 
-   test.only("navigate Forms and click the radio button using argo ", async ({ page }) => {
+   test("navigate Forms and click the radio button using argo ", async ({ page }) => {
     await page.getByRole("link", { name: "Form Layouts" }).click();
-    await argosScreenshot(page, "radioButton", {fullPage:true})
     const usingtheGridForm= page.locator('nb-card',{hasText:"Using the Grid"});
     await usingtheGridForm.getByRole("radio", { name: "Option 2" }).check({ force: true });
     const radiStatus = await usingtheGridForm.getByRole("radio", { name: "Option 1" }).isChecked();
