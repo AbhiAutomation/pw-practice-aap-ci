@@ -1,0 +1,66 @@
+<testsuites id="" name="" tests="2" failures="2" skipped="0" errors="0" time="6.41678200000152">
+<testsuite name="uiComponents.spec.ts" timestamp="2025-12-19T09:32:41.619Z" hostname="chromium" tests="2" failures="2" skipped="0" time="3.49" errors="0">
+<testcase name="Forms Layout Page › Fill inline form" classname="uiComponents.spec.ts" time="1.851">
+<failure message="uiComponents.spec.ts:14:7 Fill inline form" type="FAILURE">
+<![CDATA[  [chromium] › uiComponents.spec.ts:14:7 › Forms Layout Page › Fill inline form ────────────────────
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "http://localhost:4200/iot-dashboard", waiting until "load"
+
+
+      3 |
+      4 | test.beforeEach(async ({ page }) => {
+    > 5 |   await page.goto("iot-dashboard");
+        |              ^
+      6 | });
+      7 |
+      8 | test.describe("Forms Layout Page", () => {
+        at C:\Study\Playwright_Automation\pw-docker-prac-aap\pw-practice-aap-ci\tests\uiComponents.spec.ts:5:14
+
+    Error: locator.click: Target page, context or browser has been closed
+
+       8 | test.describe("Forms Layout Page", () => {
+       9 |   test.beforeEach(async ({ page }) => {
+    > 10 |     await page.getByRole("link", { name: "Forms" }).click();
+         |                                                     ^
+      11 |     await page.getByRole("link", { name: "Form Layouts" }).click();
+      12 |   });
+      13 |
+        at C:\Study\Playwright_Automation\pw-docker-prac-aap\pw-practice-aap-ci\tests\uiComponents.spec.ts:10:53
+]]>
+</failure>
+</testcase>
+<testcase name="Forms Layout Page › Radio button assertion " classname="uiComponents.spec.ts" time="1.639">
+<failure message="uiComponents.spec.ts:30:7 Radio button assertion " type="FAILURE">
+<![CDATA[  [chromium] › uiComponents.spec.ts:30:7 › Forms Layout Page › Radio button assertion  ─────────────
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "http://localhost:4200/iot-dashboard", waiting until "load"
+
+
+      3 |
+      4 | test.beforeEach(async ({ page }) => {
+    > 5 |   await page.goto("iot-dashboard");
+        |              ^
+      6 | });
+      7 |
+      8 | test.describe("Forms Layout Page", () => {
+        at C:\Study\Playwright_Automation\pw-docker-prac-aap\pw-practice-aap-ci\tests\uiComponents.spec.ts:5:14
+
+    Error: locator.click: Target page, context or browser has been closed
+
+       8 | test.describe("Forms Layout Page", () => {
+       9 |   test.beforeEach(async ({ page }) => {
+    > 10 |     await page.getByRole("link", { name: "Forms" }).click();
+         |                                                     ^
+      11 |     await page.getByRole("link", { name: "Form Layouts" }).click();
+      12 |   });
+      13 |
+        at C:\Study\Playwright_Automation\pw-docker-prac-aap\pw-practice-aap-ci\tests\uiComponents.spec.ts:10:53
+]]>
+</failure>
+</testcase>
+</testsuite>
+</testsuites>

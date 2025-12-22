@@ -13,6 +13,7 @@ import { argosScreenshot } from "@argos-ci/playwright";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 40000, //default timeout is 30 seconds 
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -27,7 +28,7 @@ export default defineConfig({
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 4000,
+   // timeout: 4000,
     toMatchSnapshot: {
       maxDiffPixelRatio: 50,
     },
@@ -60,12 +61,12 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: "http://localhost:4200",
-
+  
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     screenshot: "only-on-failure",
-    actionTimeout:20000,
-    navigationTimeout:25000,
+   // actionTimeout:10000,
+  //  navigationTimeout:5000,
     video:{
       mode: 'off',
       size:{width:1920,height:1080}

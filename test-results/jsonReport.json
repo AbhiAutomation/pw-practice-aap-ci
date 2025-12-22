@@ -1,0 +1,236 @@
+{
+  "config": {
+    "configFile": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\playwright.config.ts",
+    "rootDir": "C:/Study/Playwright_Automation/pw-docker-prac-aap/pw-practice-aap-ci/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\node_modules\\@argos-ci\\playwright\\dist\\reporter.js",
+        {
+          "uploadToArgos": false
+        }
+      ],
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/jsonReport.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junitReport.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Study/Playwright_Automation/pw-docker-prac-aap/pw-practice-aap-ci/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Study/Playwright_Automation/pw-docker-prac-aap/pw-practice-aap-ci/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 40000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "3way",
+    "version": "1.57.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "uiComponents.spec.ts",
+      "file": "uiComponents.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Forms Layout Page",
+          "file": "uiComponents.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Fill inline form",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 40000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1851,
+                      "error": {
+                        "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n\n    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:5:14",
+                        "location": {
+                          "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                          "column": 14,
+                          "line": 5
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"iot-dashboard\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\n \u001b[90m 8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                            "column": 14,
+                            "line": 5
+                          },
+                          "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"iot-dashboard\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\n \u001b[90m 8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:5:14\u001b[22m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                            "column": 53,
+                            "line": 10
+                          },
+                          "message": "Error: locator.click: Target page, context or browser has been closed\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Forms\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Form Layouts\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:10:53\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-19T09:32:42.277Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                        "column": 14,
+                        "line": 5
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "61472adf5185ec2f0dc4-f6baf831dc1fd76ca951",
+              "file": "uiComponents.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "Radio button assertion ",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 40000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1639,
+                      "error": {
+                        "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n\n    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:5:14",
+                        "location": {
+                          "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                          "column": 14,
+                          "line": 5
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"iot-dashboard\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\n \u001b[90m 8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                            "column": 14,
+                            "line": 5
+                          },
+                          "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://localhost:4200/iot-dashboard\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"iot-dashboard\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\n \u001b[90m 8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:5:14\u001b[22m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                            "column": 53,
+                            "line": 10
+                          },
+                          "message": "Error: locator.click: Target page, context or browser has been closed\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m\"Forms Layout Page\"\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Forms\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Form Layouts\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts:10:53\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-19T09:32:45.591Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "C:\\Study\\Playwright_Automation\\pw-docker-prac-aap\\pw-practice-aap-ci\\tests\\uiComponents.spec.ts",
+                        "column": 14,
+                        "line": 5
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "61472adf5185ec2f0dc4-eed4719da4e589909fe1",
+              "file": "uiComponents.spec.ts",
+              "line": 30,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-12-19T09:32:40.943Z",
+    "duration": 6416.78200000152,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

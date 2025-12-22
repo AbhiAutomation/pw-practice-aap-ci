@@ -8,7 +8,7 @@ test.describe("test suite 1", () => {
     console.log("beforeEach hook Suite Forms");
   });
 
-  test("navigate Forms and click the radio button ", async ({ page }) => {
+  test("navigate Forms and click the radio button", async ({ page }) => {
     await page.getByRole("link", { name: "Form Layouts" }).click();
     const usingtheGridForm= page.locator('nb-card',{hasText:"Using the Grid"});
     await usingtheGridForm.getByRole("radio", { name: "Option 2" }).check({ force: true });
@@ -18,11 +18,10 @@ test.describe("test suite 1", () => {
     await expect(usingtheGridForm).toHaveScreenshot({maxDiffPixels:50});
   });
 
-   test("navigate Forms and click the radio button using argo ", async ({ page }) => {
+   test("navigate Forms and click the radio button using argo", async ({ page }) => {
     await page.getByRole("link", { name: "Form Layouts" }).click();
     const usingtheGridForm= page.locator('nb-card',{hasText:"Using the Grid"});
     await usingtheGridForm.getByRole("radio", { name: "Option 2" }).check({ force: true });
-    const radiStatus = await usingtheGridForm.getByRole("radio", { name: "Option 1" }).isChecked();
     await argosScreenshot(page, "radioButton", {fullPage:true})
     await expect(usingtheGridForm).toHaveScreenshot({maxDiffPixels:50});
   });
@@ -31,7 +30,7 @@ test.describe("test suite 1", () => {
   });
 });
 
-test.describe("test suite Table and Date ", () => {
+test.describe("test suite Table and Date", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/pages/iot-dashboard");
     await page.getByRole("link", { name: "Tables & Data" }).click();
